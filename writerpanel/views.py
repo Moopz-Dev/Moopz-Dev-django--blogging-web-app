@@ -4,4 +4,4 @@ from django.shortcuts import render
 
 
 def panel(request):
-    pass
+    return render(request, "backend/index.html")
