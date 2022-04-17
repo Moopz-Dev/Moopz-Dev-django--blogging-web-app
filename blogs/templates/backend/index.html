@@ -5,7 +5,7 @@
 	<!--<![endif]-->
 	<head>
 		<meta charset="utf-8" />
-		{%load static%}
+		{%load static%} {%load humanize%}
 		<title>Writer Panel</title>
 
 		<meta name="robots" content="noindex, nofollow" />
@@ -68,7 +68,7 @@
 										/>
 									</a>
 								</div>
-								<div class="sidebar-user-name">ชื่อนักเขียน</div>
+								<div class="sidebar-user-name">{{writer}}</div>
 							</div>
 							<!-- END User Info -->
 							<!-- Sidebar Navigation -->
@@ -76,7 +76,7 @@
 								<li>
 									<a href="index.html" class="active"
 										><i class="gi gi-stopwatch sidebar-nav-icon"></i
-										><span class="sidebar-nav-mini-hide">ภาพรวม</span></a
+										><span class="sidebar-nav-mini-hide">Summary</span></a
 									>
 								</li>
 								<li class="sidebar-header">
@@ -87,7 +87,7 @@
 											title="Quick Settings"
 											><i class="gi gi-settings"></i></a
 									></span>
-									<span class="sidebar-header-title">จัดการข้อมูล</span>
+									<span class="sidebar-header-title">Manage Data</span>
 								</li>
 								<li>
 									<a href="#" class="sidebar-nav-menu"
@@ -177,16 +177,16 @@
 									<i class="fa fa-angle-down"></i>
 								</a>
 								<ul class="dropdown-menu dropdown-custom dropdown-menu-right">
-									<li class="dropdown-header text-center">บัญชีผู้ใช้</li>
+									<li class="dropdown-header text-center">{{writer}}</li>
 									<li class="divider"></li>
 									<li>
 										<a href="page_ready_user_profile.html">
 											<i class="fa fa-user fa-fw pull-right"></i>
-											โปรไฟล์
+											Profile
 										</a>
 										<!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
 										<a href="#"
-											><i class="fa fa-ban fa-fw pull-right"></i> ออกจากระบบ</a
+											><i class="fa fa-ban fa-fw pull-right"></i> SignOut</a
 										>
 									</li>
 									<li class="divider"></li>
@@ -212,8 +212,8 @@
 											<i class="fa fa-file-text"></i>
 										</div>
 										<h3 class="widget-content text-right animation-pullDown">
-											เขียน<strong>บทความ</strong><br />
-											<small>ของคุณที่นี่!</small>
+											Write your <strong>BLOG</strong><br />
+											<small>here!</small>
 										</h3>
 									</div>
 								</a>
@@ -229,8 +229,8 @@
 											<i class="gi gi-table"></i>
 										</div>
 										<h3 class="widget-content text-right animation-pullDown">
-											จำนวน <strong>50</strong><br />
-											<small>บทความ</small>
+											Count: <strong>{{blogCount|intcomma}}</strong><br />
+											<small>blog posts</small>
 										</h3>
 									</div>
 								</a>
@@ -246,8 +246,8 @@
 											<i class="fa fa-heart"></i>
 										</div>
 										<h3 class="widget-content text-right animation-pullDown">
-											+10,000 <strong>Views</strong>
-											<small>ยอดเข้าชมทั้งหมด</small>
+											{{total.views__sum|intcomma}} <strong>Views</strong>
+											<small>Total Views Count</small>
 										</h3>
 									</div>
 								</a>
@@ -268,7 +268,7 @@
 										><i class="fa fa-cog"></i
 									></a>
 								</div>
-								<h2><strong>บทความทั้งหมด</strong></h2>
+								<h2><strong>All Blog Posts</strong></h2>
 							</div>
 							<!-- Title -->
 
@@ -279,23 +279,30 @@
 							>
 								<thead>
 									<tr>
-										<th class="text-center" style="width: 70px">รหัส</th>
-										<th>ภาพปก</th>
-										<th class="text-right hidden-xs">ชื่อบทความ</th>
-										<th class="hidden-xs">ยอดเข้าชม (View)</th>
-										<th class="hidden-xs text-center">วันที่เขียนบทความ</th>
+										<th class="text-center" style="width: 70px">ID</th>
+										<th>Cover Image</th>
+										<th class="text-right hidden-xs">Blog Title</th>
+										<th class="hidden-xs">View Count</th>
+										<th class="hidden-xs text-center">Submit Date</th>
 										<th class="text-center">Action</th>
 									</tr>
 								</thead>
 								<tbody>
+									{%for blog in blogs%}
 									<tr>
-										<td class="text-center">1</td>
-										<td>Image</td>
-										<td class="text-right hidden-xs">
-											<strong>ท่องเที่ยว</strong>
+										<td class="text-center">{{blog.id}}</td>
+										<td>
+											<img
+												src="{{blog.image.url}}"
+												alt=""
+												style="height: 50px; margin: auto; display: block"
+											/>
 										</td>
-										<td class="text-center">5,000</td>
-										<td class="hidden-xs text-center">18/02/2021</td>
+										<td class="text-right hidden-xs">
+											<strong>{{blog.name}}</strong>
+										</td>
+										<td class="text-center">{{blog.views|intcomma}}</td>
+										<td class="hidden-xs text-center">{{blog.created}}</td>
 										<td class="text-center">
 											<div class="btn-group btn-group-xs">
 												<a
@@ -315,6 +322,7 @@
 											</div>
 										</td>
 									</tr>
+									{%endfor%}
 								</tbody>
 							</table>
 							<!-- END All Products Content -->
