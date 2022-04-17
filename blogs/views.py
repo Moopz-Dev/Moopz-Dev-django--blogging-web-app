@@ -25,4 +25,6 @@ def index(request):
 
 def blogDetail(request, id):
     singleBlog = Blog.objects.get(id=id)
+    singleBlog.views = singleBlog.views + 1
+    singleBlog.save()
     return render(request, "frontend/blogDetail.html", {"blog": singleBlog})
