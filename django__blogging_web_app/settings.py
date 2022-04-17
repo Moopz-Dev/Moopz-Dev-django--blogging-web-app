@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'blogs',
     'category',
+    'writerpanel',
 ]
 
 MIDDLEWARE = [
