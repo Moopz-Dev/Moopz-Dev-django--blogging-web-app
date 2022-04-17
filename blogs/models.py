@@ -11,7 +11,7 @@ class Blog(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     writer = models.CharField(max_length=255)
     views = models.IntegerField(default=0)
-    images = models.ImageField(upload_to="blogImages", blank=True)
+    image = models.ImageField(upload_to="blogImages", blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

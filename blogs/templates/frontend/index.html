@@ -131,66 +131,28 @@
                             </div><!-- end blog-top -->
 
                             <div class="blog-list clearfix">
-                                <div class="blog-box row">
-                                    <div class="col-md-4">
-                                        <div class="post-media">
-                                            <a href="#" title="">
-                                                <img src="{%static 'frontend/upload/tech_01.jpg' %} " alt="" class="img-fluid">
-                                                <div class="hovereffect"></div>
-                                            </a>
-                                        </div><!-- end media -->
-                                    </div><!-- end col -->
+                              {%for blog in blogs%}
+                              <div class="blog-box row">
+                                <div class="col-md-4">
+                                    <div class="post-media">
+                                        <a href="#" title="">
+                                            <img src="{{blog.image.url}}" alt="" class="img-fluid">
+                                            <div class="hovereffect"></div>
+                                        </a>
+                                    </div><!-- end media -->
+                                </div><!-- end col -->
 
-                                    <div class="blog-meta big-meta col-md-8">
-                                        <h4><a href="#" title="">Top 10 phone applications and 2017 mobile design awards</a></h4>
-                                        <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                        <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title="">ท่องเที่ยว</a></small>
-                                        <small><a href="#" title="">21 July, 2017</a></small>
-                                        <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                        <small><a href="#" title=""><i class="fa fa-eye"></i> 1114</a></small>
-                                    </div><!-- end meta -->
-                                </div><!-- end blog-box -->
-                                <div class="blog-box row">
-                                    <div class="col-md-4">
-                                        <div class="post-media">
-                                            <a href="#" title="">
-                                                <img src="{%static 'frontend/upload/tech_01.jpg' %} " alt="" class="img-fluid">
-                                                <div class="hovereffect"></div>
-                                            </a>
-                                        </div><!-- end media -->
-                                    </div><!-- end col -->
-
-                                    <div class="blog-meta big-meta col-md-8">
-                                        <h4><a href="#" title="">A device you can use both headphones and usb</a></h4>
-                                        <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                        <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title="">เทคโนโลยี</a></small>
-                                        <small><a href="#" title="">21 July, 2017</a></small>
-                                        <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                        <small><a href="#" title=""><i class="fa fa-eye"></i> 4412</a></small>
-                                    </div><!-- end meta -->
-                                </div><!-- end blog-box -->
-
-                                <hr class="invis">
-
-                                <div class="blog-box row">
-                                    <div class="col-md-4">
-                                        <div class="post-media">
-                                            <a href="#" title="">
-                                                <img src="{%static 'frontend/upload/tech_blog_03.jpg' %}" alt="" class="img-fluid">
-                                                <div class="hovereffect"></div>
-                                            </a>
-                                        </div><!-- end media -->
-                                    </div><!-- end col -->
-
-                                    <div class="blog-meta big-meta col-md-8">
-                                        <h4><a href="#" title="">Two brand new laptop models from ABC computer</a></h4>
-                                        <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                        <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title="">Development</a></small>
-                                        <small><a href="#" title="">20 July, 2017</a></small>
-                                        <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                        <small><a href="#" title=""><i class="fa fa-eye"></i> 2313</a></small>
-                                    </div><!-- end meta -->
-                                </div><!-- end blog-box -->
+                                <div class="blog-meta big-meta col-md-8">
+                                    <h4><a href="#" title="">{{blog.name}}</a></h4>
+                                    <p>{{blog.description}}</p>
+                                    <small class="firstsmall"><a class="bg-orange" href="#" title="">{{blog.category}}</a></small>
+                                    <small><a href="#" title="">{{blog.created}}</a></small>
+                                    <small><a href="tech-author.html" title="">by {{blog.writer}}</a></small>
+                                    <small><a href="#" title=""><i class="fa fa-eye"></i>{{blog.views}}</a></small>
+                                </div><!-- end meta -->
+                            </div><!-- end blog-box -->
+                            <hr class="invis">
+                              {%endfor%}
                             </div><!-- end blog-list -->
                         </div><!-- end page-wrapper -->
                         <hr class="invis">
