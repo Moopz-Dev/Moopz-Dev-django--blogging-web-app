@@ -48,7 +48,7 @@
 						<!-- Sidebar Content -->
 						<div class="sidebar-content">
 							<!-- Brand -->
-							<a href="index.html" class="sidebar-brand">
+							<a href="{%url 'panel'%}" class="sidebar-brand">
 								<i class="gi gi-flash"></i
 								><span class="sidebar-nav-mini-hide"
 									><strong>Writer</strong>Panel</span
@@ -61,7 +61,7 @@
 								class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide"
 							>
 								<div class="sidebar-user-avatar">
-									<a href="#">
+									<a href="{%url 'panel'%}">
 										<img
 											src="{% static 'backend/img/placeholders/avatars/avatar2.jpg' %}"
 											alt="avatar"
@@ -74,7 +74,7 @@
 							<!-- Sidebar Navigation -->
 							<ul class="sidebar-nav">
 								<li>
-									<a href="index.html" class="active"
+									<a href="{%url 'panel'%}" class="active"
 										><i class="gi gi-stopwatch sidebar-nav-icon"></i
 										><span class="sidebar-nav-mini-hide">Summary</span></a
 									>
@@ -185,7 +185,7 @@
 											Profile
 										</a>
 										<!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
-										<a href="#"
+										<a href="{%url 'logout'%}"
 											><i class="fa fa-ban fa-fw pull-right"></i> SignOut</a
 										>
 									</li>
@@ -204,7 +204,7 @@
 						<div class="row">
 							<div class="col-sm-6 col-lg-3">
 								<!-- Widget -->
-								<a href="#" class="widget widget-hover-effect1">
+								<a href="{%url 'panel'%}" class="widget widget-hover-effect1">
 									<div class="widget-simple">
 										<div
 											class="widget-icon pull-left themed-background-autumn animation-fadeIn"

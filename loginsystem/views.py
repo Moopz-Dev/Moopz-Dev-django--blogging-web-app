@@ -1,6 +1,7 @@
+from tkinter import E
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, auth
 # Create your views here.
 
 
@@ -37,3 +38,22 @@ def register(request):
             else:
                 messages.info(request, "Passwords do not match.")
                 return redirect("member")
+
+
+def login(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            return redirect("panel")
+        else:
+            messages.info(request, "User not found.")
+            return redirect("member")
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect("member")

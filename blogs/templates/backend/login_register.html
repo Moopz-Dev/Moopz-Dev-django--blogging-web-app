@@ -29,22 +29,22 @@
                     <div id="login-alt-container">
                         <!-- Title -->
                         <h1 class="push-top-bottom">
-                            <i class="gi gi-flash"></i> <strong>สมัครเป็นนักเขียน</strong><br>
-                            <small>มาแชร์บทความ โดยการสมัครนักเขียนกับเราได้ที่นี่!</small>
+                            <i class="gi gi-flash"></i> <strong>Register as a Writer</strong><br>
+                            <small>Share your views and experiences!</small>
                         </h1>
                         <!-- END Title -->
 
                         <!-- Key Features -->
                         <ul class="fa-ul text-muted">
-                            <li><i class="fa fa-check fa-li text-success"></i> สมัครเป็นนักเขียน</li>
-                            <li><i class="fa fa-check fa-li text-success"></i> เขียนบทความของคุณ</li>
-                            <li><i class="fa fa-check fa-li text-success"></i> แชร์บทความของคุณ</li>
+                            <li><i class="fa fa-check fa-li text-success"></i> Register as a writer</li>
+                            <li><i class="fa fa-check fa-li text-success"></i> Write your Blog</li>
+                            <li><i class="fa fa-check fa-li text-success"></i> Share your blog</li>
                         </ul>
                         <!-- END Key Features -->
 
                         <!-- Footer -->
                         <footer class="text-muted push-top-bottom">
-                            <small> &copy; <a href="#" target="_blank">Django Framework | KongRuksiam</Frame></a></small>
+                            <small> &copy; <a href="#" target="_blank">Django Framework | Moopz_Dev</Frame></a></small>
                         </footer>
                         <!-- END Footer -->
                     </div>
@@ -61,7 +61,8 @@
                         <!-- Login Block -->
                         <div class="block push-bit">
                             <!-- Login Form -->
-                            <form action="#" method="post" id="form-login" class="form-horizontal">
+                            <form action="{%url 'login'%}" method="post" id="form-login" class="form-horizontal">
+                                {%csrf_token%}
                                 <div class="form-group">
                                     <div class="col-xs-12">
                                         <div class="input-group">
