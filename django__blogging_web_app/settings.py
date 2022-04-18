@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'blogs',
     'category',
     'writerpanel',
+    'loginsystem',
 ]
 
 MIDDLEWARE = [
