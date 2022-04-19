@@ -45,7 +45,15 @@ def insertData(request):
                         category_id=category, content=content, writer=writer, image=img_url)
             blog.save()
             messages.info(request, "Data Successfully Written!")
-            return redirect("displayForm")
+            return redirect("panel")
         else:
             messages.info(request, "Invalid file type, please reupload!")
             return redirect("displayForm")
+
+
+def deleteData(request, id):
+    blog = Blog.objects.get(id=id)
+    fs = FileSystemStorage()
+    fs.delete(str(blog.image))
+    blog.delete()
+    return redirect('panel')

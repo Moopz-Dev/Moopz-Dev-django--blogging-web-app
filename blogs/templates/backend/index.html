@@ -2,74 +2,64 @@
 
 <!-- ตารางบทความ -->
 <div class="block full">
-	<!-- All Title -->
-	<div class="block-title">
-		<div class="block-options pull-right">
-			<a
-				href="javascript:void(0)"
-				class="btn btn-alt btn-sm btn-default"
-				data-toggle="tooltip"
-				title="Settings"
-				><i class="fa fa-cog"></i
-			></a>
-		</div>
-		<h2><strong>All Blog Posts</strong></h2>
-	</div>
-	<!-- Title -->
+  <!-- All Title -->
+  <div class="block-title">
+    <div class="block-options pull-right">
+      <a
+        href="javascript:void(0)"
+        class="btn btn-alt btn-sm btn-default"
+        data-toggle="tooltip"
+        title="Settings"
+        ><i class="fa fa-cog"></i
+      ></a>
+    </div>
+    <h2><strong>All Blog Posts</strong></h2>
+  </div>
+  <!-- Title -->
 
-	<!--Content -->
-	<table
-		id="ecom-products"
-		class="table table-bordered table-striped table-vcenter"
-	>
-		<thead>
-			<tr>
-				<th class="text-center" style="width: 70px">ID</th>
-				<th>Cover Image</th>
-				<th class="text-right hidden-xs">Blog Title</th>
-				<th class="hidden-xs">View Count</th>
-				<th class="hidden-xs text-center">Submit Date</th>
-				<th class="text-center">Action</th>
-			</tr>
-		</thead>
-		<tbody>
-			{%for blog in blogs%}
-			<tr>
-				<td class="text-center">{{blog.id}}</td>
-				<td>
-					<img
-						src="{{blog.image.url}}"
-						alt=""
-						style="height: 50px; margin: auto; display: block"
-					/>
-				</td>
-				<td class="text-right hidden-xs">
-					<strong>{{blog.name}}</strong>
-				</td>
-				<td class="text-center">{{blog.views|intcomma}}</td>
-				<td class="hidden-xs text-center">{{blog.created}}</td>
-				<td class="text-center">
-					<div class="btn-group btn-group-xs">
-						<a
-							href="#"
-							data-toggle="tooltip"
-							title="Edit"
-							class="btn btn-default"
-							><i class="fa fa-pencil"></i
-						></a>
-						<a
-							href="#"
-							data-toggle="tooltip"
-							title="Delete"
-							class="btn btn-xs btn-danger"
-							><i class="fa fa-times"></i
-						></a>
-					</div>
-				</td>
-			</tr>
-			{%endfor%}
-		</tbody>
-	</table>
-	<!-- END All Products Content -->
+  <!--Content -->
+  <table id="ecom-products" class="table table-bordered table-striped table-vcenter">
+    <thead>
+      <tr>
+        <th class="text-center" style="width: 70px">ID</th>
+        <th>Cover Image</th>
+        <th class="text-right hidden-xs">Blog Title</th>
+        <th class="hidden-xs">View Count</th>
+        <th class="hidden-xs text-center">Category</th>
+        <th class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for blog in blogs%}
+      <tr>
+        <td class="text-center">{{blog.id}}</td>
+        <td>
+          <img src="{{blog.image.url}}" alt="" style="height: 50px; margin: auto; display: block" />
+        </td>
+        <td class="text-right hidden-xs">
+          <strong>{{blog.name}}</strong>
+        </td>
+        <td class="text-center">{{blog.views|intcomma}}</td>
+        <td class="hidden-xs text-center">{{blog.category}}</td>
+        <td class="text-center">
+          <div class="btn-group btn-group-xs">
+            <a href="#" data-toggle="tooltip" title="Edit" class="btn btn-default"
+              ><i class="fa fa-pencil"></i
+            ></a>
+            <a
+              href="{%url 'deleteData' blog.id%}"
+              data-toggle="tooltip"
+              onclick="return confirm('Are you sure you want to delete?')"
+              title="Delete"
+              class="btn btn-xs btn-danger"
+              ><i class="fa fa-times"></i
+            ></a>
+          </div>
+        </td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  <!-- END All Products Content -->
 </div>
 {%endblock%}
