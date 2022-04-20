@@ -1,4 +1,3 @@
-import re
 from django.shortcuts import redirect, render
 from blogs.models import Blog
 from django.db.models import Sum
@@ -19,6 +18,7 @@ def panel(request):
     return render(request, "backend/index.html", {"blogs": blogs, "writer": writer, "blogCount": blogCount, "total": total})
 
 
+@login_required(login_url="member")
 def displayForm(request):
     writer = auth.get_user(request)
     blogs = Blog.objects.filter(writer=writer)
@@ -28,6 +28,7 @@ def displayForm(request):
     return render(request, 'backend/blogForm.html', {"blogs": blogs, "writer": writer, "blogCount": blogCount, "total": total, 'categories': categories})
 
 
+@login_required(login_url="member")
 def insertData(request):
     if request.method == "POST" and request.FILES["image"]:
         datafile = request.FILES["image"]
@@ -51,9 +52,57 @@ def insertData(request):
             return redirect("displayForm")
 
 
+@login_required(login_url="member")
 def deleteData(request, id):
-    blog = Blog.objects.get(id=id)
-    fs = FileSystemStorage()
-    fs.delete(str(blog.image))
-    blog.delete()
-    return redirect('panel')
+    try:
+        blog = Blog.objects.get(id=id)
+        fs = FileSystemStorage()
+        fs.delete(str(blog.image))
+        blog.delete()
+        return redirect('panel')
+    except:
+        return redirect('panel')
+
+
+@login_required(login_url="member")
+def editData(request, id):
+    blogEdit = Blog.objects.get(id=id)
+    writer = auth.get_user(request)
+    blogs = Blog.objects.filter(writer=writer)
+    blogCount = blogs.count()
+    total = blogs.aggregate(Sum("views"))
+    categories = Category.objects.all()
+    return render(request, "backend/editForm.html", {"blogEdit": blogEdit, "writer": writer, "blogCount": blogCount, "total": total, 'categories': categories})
+
+
+@login_required(login_url="member")
+def updateData(request, id):
+    try:
+        if request.method == "POST":
+            blog = Blog.objects.get(id=id)
+            name = request.POST["name"]
+            category = request.POST["category"]
+            description = request.POST["description"]
+            content = request.POST["content"]
+
+            blog.name = name
+            blog.category_id = category
+            blog.description = description
+            blog.content = content
+            blog.save()
+            messages.info(request, "Data Successfully Updated!")
+
+            if request.FILES["image"]:
+                datafile = request.FILES["image"]
+                if str(datafile.content_type).startswith("image"):
+                    fs = FileSystemStorage()
+                    fs.delete(str.blog.image)
+                    img_url = "blogImages/"+datafile.name
+                    filename = fs.save(img_url, datafile)
+                    blog.image = img_url
+                    blog.save()
+                return redirect("panel")
+            return redirect("panel")
+
+    except:
+        return redirect("panel")

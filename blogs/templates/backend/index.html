@@ -43,7 +43,11 @@
         <td class="hidden-xs text-center">{{blog.category}}</td>
         <td class="text-center">
           <div class="btn-group btn-group-xs">
-            <a href="#" data-toggle="tooltip" title="Edit" class="btn btn-default"
+            <a
+              href="{%url 'editData' blog.id%}"
+              data-toggle="tooltip"
+              title="Edit"
+              class="btn btn-default"
               ><i class="fa fa-pencil"></i
             ></a>
             <a
